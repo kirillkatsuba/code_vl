@@ -54,19 +54,19 @@ class FaceLandmarksDataset(Dataset):
         return np.array(landmarks, dtype=np.float32)
 
     def _prepare_data(self):
-        # cache_path = os.path.join(self.root_dir, "face_data_cache.json")
+        cache_path = os.path.join("face_data_cache.json")
         
-        # # 1. Попытка загрузки из кэша
-        # if os.path.exists(cache_path):
-        #     print(f"--- Загрузка кэша из {cache_path} ---")
-        #     with open(cache_path, 'r') as f:
-        #         cached_list = json.load(f)
-        #         for item in cached_list:
-        #             # Конвертируем обратно в numpy для удобства работы в __getitem__
-        #             item['landmarks'] = np.array(item['landmarks'], dtype=np.float32)
-        #             self.preprocessed_data.append(item)
-        #     print(f"Успешно загружено из кэша: {len(self.preprocessed_data)} образцов.")
-        #     return
+        # 1. Попытка загрузки из кэша
+        if os.path.exists(cache_path):
+            print(f"--- Загрузка кэша из {cache_path} ---")
+            with open(cache_path, 'r') as f:
+                cached_list = json.load(f)
+                for item in cached_list:
+                    # Конвертируем обратно в numpy для удобства работы в __getitem__
+                    item['landmarks'] = np.array(item['landmarks'], dtype=np.float32)
+                    self.preprocessed_data.append(item)
+            print(f"Успешно загружено из кэша: {len(self.preprocessed_data)} образцов.")
+            return
 
         # 2. Если кэша нет — выполняем детекцию
         search_pattern = os.path.join(self.root_dir, "**/*.pts")
