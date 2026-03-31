@@ -68,11 +68,11 @@ class FaceLandmarksDataset(Dataset):
         #     print(f"Успешно загружено из кэша: {len(self.preprocessed_data)} образцов.")
         #     return
 
-        # # 2. Если кэша нет — выполняем детекцию
-        # search_pattern = os.path.join(self.root_dir, "**/*.pts")
-        # all_pts_files = glob.glob(search_pattern, recursive=True)
+        # 2. Если кэша нет — выполняем детекцию
+        search_pattern = os.path.join(self.root_dir, "**/*.pts")
+        all_pts_files = glob.glob(search_pattern, recursive=True)
         
-        # print(f"--- Кэш не найден. Начало детекции лиц в: {self.root_dir} ---")
+        print(f"--- Кэш не найден. Начало детекции лиц в: {self.root_dir} ---")
         
         for pts_path in tqdm(all_pts_files, desc="Препроцессинг"):
             img_path = pts_path.replace('.pts', '.jpg')
