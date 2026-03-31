@@ -85,11 +85,11 @@ else:
     val_path = '/kaggle/input/datasets/kirillkatsuba/traindataset/300W/test'
 
 if args.train_data == 'menpo':
-    train_loader, val_loader = get_dataloaders('Menpo/train', val_path, batch_size=args.batch_size)
+    train_loader, val_loader = get_dataloaders('/kaggle/input/datasets/kirillkatsuba/traindataset/Menpo/train', val_path, batch_size=args.batch_size)
 elif args.train_data == '300w':
-    train_loader, val_loader = get_dataloaders('300W/train', val_path, batch_size=args.batch_size)
+    train_loader, val_loader = get_dataloaders('/kaggle/input/datasets/kirillkatsuba/traindataset/300W/train', val_path, batch_size=args.batch_size)
 else:
-    train_loader, val_loader = get_concat_dataloaders(['Menpo/train', '300W/train'], val_path, batch_size=args.batch_size)
+    train_loader, val_loader = get_concat_dataloaders(['/kaggle/input/datasets/kirillkatsuba/traindataset/Menpo/train', '/kaggle/input/datasets/kirillkatsuba/traindataset/300W/train'], val_path, batch_size=args.batch_size)
 
 NUM_EPOCHS = 40
 best_val_nme = float('inf')
