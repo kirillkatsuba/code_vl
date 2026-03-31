@@ -80,9 +80,9 @@ optimizer = optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience=5, factor=0.7)
 
 if args.val_data == 'menpo':
-    val_path = 'Menpo/test'
+    val_path = '/kaggle/input/datasets/kirillkatsuba/traindataset/Menpo/test'
 else:
-    val_path = '300W/test'
+    val_path = '/kaggle/input/datasets/kirillkatsuba/traindataset/300W/test'
 
 if args.train_data == 'menpo':
     train_loader, val_loader = get_dataloaders('Menpo/train', val_path, batch_size=args.batch_size)
