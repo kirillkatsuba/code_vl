@@ -80,16 +80,16 @@ optimizer = optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-5)
 scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience=5, factor=0.7)
 
 if args.val_data == 'menpo':
-    val_path = '/kaggle/input/datasets/kirillkatsuba/traindataset/Menpo/test'
+    val_path = '/kaggle/input/datasets/kirillkatsuba/traindataset/Menpo/Menpo/test'
 else:
-    val_path = '/kaggle/input/datasets/kirillkatsuba/traindataset/300W/test'
+    val_path = '/kaggle/input/datasets/kirillkatsuba/traindataset/300W/300W/test'
 
 if args.train_data == 'menpo':
-    train_loader, val_loader = get_dataloaders('/kaggle/input/datasets/kirillkatsuba/traindataset/Menpo/train', val_path, batch_size=args.batch_size)
+    train_loader, val_loader = get_dataloaders('/kaggle/input/datasets/kirillkatsuba/traindataset/Menpo/Menpo/train', val_path, batch_size=args.batch_size)
 elif args.train_data == '300w':
-    train_loader, val_loader = get_dataloaders('/kaggle/input/datasets/kirillkatsuba/traindataset/300W/train', val_path, batch_size=args.batch_size)
+    train_loader, val_loader = get_dataloaders('/kaggle/input/datasets/kirillkatsuba/traindataset/300W/300W/train', val_path, batch_size=args.batch_size)
 else:
-    train_loader, val_loader = get_concat_dataloaders(['/kaggle/input/datasets/kirillkatsuba/traindataset/Menpo/train', '/kaggle/input/datasets/kirillkatsuba/traindataset/300W/train'], val_path, batch_size=args.batch_size)
+    train_loader, val_loader = get_concat_dataloaders(['/kaggle/input/datasets/kirillkatsuba/traindataset/Menpo/Menpo/train', '/kaggle/input/datasets/kirillkatsuba/traindataset/300W/300W/train'], val_path, batch_size=args.batch_size)
 
 NUM_EPOCHS = 40
 best_val_nme = float('inf')
